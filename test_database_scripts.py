@@ -7,4 +7,4 @@ def test_validate_query_pass():
 
 """Query returns few rows said to be a failed test and need to be notified"""
 def test_validate_query_fail():
-    assert database_results.get_db_data(query.db_conn, query.query_fail) == 0, "query_fail script failed with errors"
+    assert database_results.get_db_data(query.db_conn, query.query_fail) == 2, "query_fail script failed with errors"
