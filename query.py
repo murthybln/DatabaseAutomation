@@ -3,3 +3,5 @@ db_conn = "DRIVER={SQL SERVER};server=192.168.18.36;database=Maverick;uid=narasi
 query_fail = """SELECT * FROM dbo.Employee"""
 
 query_pass = """SELECT * FROM dbo.Employee where Age = 21"""
+
+query_pass = """SELECT * FROM dbo.Employee where Age = 21"""
