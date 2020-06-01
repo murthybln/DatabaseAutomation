@@ -1,0 +1,92 @@
+{
+	
+  "appConfig": {},
+  "application": "commandbusrabbitmq",
+  "expectedArtifacts": [
+    {
+      "defaultArtifact": {
+        "artifactAccount": "telegitrepo",
+        "id": "dbb22291-bce8-4103-bafc-867b8aab61a6",
+        "reference": "git@bitbucket.org:teleadmin/amqp-commandbus.git",
+        "type": "git/repo",
+        "version": "master"
+      },
+      "displayName": "Kustomize Repo",
+      "id": "68f83c3a-db55-47e1-80f6-8341b358eda7",
+      "matchArtifact": {
+        "artifactAccount": "telegitrepo",
+        "id": "0bb72f72-d623-4cbb-8738-a841671e91ff",
+        "reference": "git@bitbucket.org:teleadmin/amqp-commandbus.git",
+        "type": "git/repo",
+        "version": "master"
+      },
+      "useDefaultArtifact": true,
+      "usePriorArtifact": false
+    }
+  ],
+  "id": "2dbfe1d0-ef00-405a-a7a6-d49c702b34c0",
+  "index": 0,
+  "keepWaitingPipelines": false,
+  "lastModifiedBy": "Mark-Barkell@TELETRACKING.COM",
+  "limitConcurrent": true,
+  "name": "Dev Deploy Command Bus",
+  "stages": [
+    {
+      "expectedArtifacts": [
+        {
+          "defaultArtifact": {
+            "id": "a2b217b8-ecc2-4721-9bc3-c409e75940e1",
+            "type": "embedded/base64"
+          },
+          "displayName": "wise-liger-68",
+          "id": "45250627-0f09-451d-a41f-d4378ca2a06b",
+          "matchArtifact": {
+            "id": "2e3f3ae3-3928-4b23-9c0b-2d5db9a015b1",
+            "name": "baked-kustomize",
+            "type": "embedded/base64"
+          },
+          "useDefaultArtifact": false,
+          "usePriorArtifact": false
+        }
+      ],
+      "inputArtifact": {
+        "account": "telegitrepo",
+        "id": "68f83c3a-db55-47e1-80f6-8341b358eda7"
+      },
+      "inputArtifacts": [],
+      "kustomizeFilePath": "overlays/dev/kustomization.yml",
+      "name": "Bake Dev Deploy Command Bus",
+      "overrides": {},
+      "refId": "1",
+      "requisiteStageRefIds": [],
+      "templateRenderer": "KUSTOMIZE",
+      "type": "bakeManifest"
+    },
+    {
+      "account": "dev-dev-services",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactAccount": "embedded-artifact",
+      "manifestArtifactId": "45250627-0f09-451d-a41f-d4378ca2a06b",
+      "moniker": {
+        "app": "commandbusrabbitmq"
+      },
+      "name": "Deploy the Command Bus Please",
+      "refId": "2",
+      "requisiteStageRefIds": [
+        "1"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    }
+  ],
+  "triggers": [],
+  "updateTs": "1588550149000"
+}
